@@ -13,5 +13,9 @@ public class UserResponse {
     private String email;
     private String phone;
     private String role;
+    private String studentCode;
+    private String staffCode;
+    private String department;
+    private String faculty;
     private LocalDateTime createdAt;
 }

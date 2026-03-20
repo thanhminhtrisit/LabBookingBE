@@ -44,9 +44,12 @@ public class BookingServiceImpl implements BookingService {
             return ResponseUtils.error("409", "Lab đã có booking trong khung giờ này");
 
         User user = userRepository.findById(userId).orElseThrow();
+        String resolvedTitle = (req.getTitle() != null && !req.getTitle().isBlank())
+            ? req.getTitle()
+            : (req.getNote() != null ? req.getNote() : "Booking request");
         Booking saved = bookingRepository.save(Booking.builder()
             .user(user).lab(lab).startTime(req.getStartTime()).endTime(req.getEndTime())
-            .title(req.getTitle()).note(req.getNote()).status(BookingStatus.PENDING)
+            .title(resolvedTitle).note(req.getNote()).status(BookingStatus.PENDING)
             .createdAt(LocalDateTime.now()).build());
 
         // Notify ADMIN + STAFF

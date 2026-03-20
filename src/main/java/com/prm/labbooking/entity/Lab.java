@@ -25,6 +25,15 @@ public class Lab {
 
     private Integer capacity;
 
+    @Column(length = 100)
+    private String building;   // e.g. "Block C", "Block E"
+
+    @Column(length = 100)
+    private String faculty;    // e.g. "Computer Science & IT", "Applied Sciences"
+
+    @Column(columnDefinition = "TEXT")
+    private String equipment;  // JSON string, e.g. [{"name":"Desktop PC","quantity":30}]
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private LabStatus status = LabStatus.ACTIVE;

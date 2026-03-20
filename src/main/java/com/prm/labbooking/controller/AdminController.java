@@ -25,6 +25,10 @@ public class AdminController {
         List<UserResponse> data = userRepository.findAll().stream()
             .map(u -> UserResponse.builder().id(u.getId()).fullName(u.getFullName())
                 .email(u.getEmail()).phone(u.getPhone()).role(u.getRole().name())
+                .studentCode(u.getStudentCode())   // NEW
+                .staffCode(u.getStaffCode())       // NEW
+                .department(u.getDepartment())     // NEW
+                .faculty(u.getFaculty())           // NEW
                 .createdAt(u.getCreatedAt()).build()).toList();
         BaseResponse r = new BaseResponse();
         r.setStatusCode("200"); r.setMessage("OK"); r.setData(data);

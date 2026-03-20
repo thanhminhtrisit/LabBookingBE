@@ -12,4 +12,7 @@ public class CreateLabRequest {
     private String location;
     private String description;
     private Integer capacity;
+    private String building;
+    private String faculty;
+    private String equipment; // raw JSON string from client
 }

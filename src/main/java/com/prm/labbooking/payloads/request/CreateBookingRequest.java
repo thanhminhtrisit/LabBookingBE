@@ -11,6 +11,6 @@ public class CreateBookingRequest {
     @NotNull private Long labId;
     @NotNull private LocalDateTime startTime;
     @NotNull private LocalDateTime endTime;
-    @NotBlank private String title;
+    private String title; // optional, can be null
     private String note;
 }

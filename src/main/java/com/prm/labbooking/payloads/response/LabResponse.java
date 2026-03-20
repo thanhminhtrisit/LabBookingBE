@@ -15,5 +15,9 @@ public class LabResponse {
     private String description;
     private Integer capacity;
     private String status;
+    private String building;
+    private String faculty;
+    private String equipment;   // pass-through raw JSON string
+    private Boolean isOccupied; // derived field, explained in Change 3
     private LocalDateTime createdAt;
 }

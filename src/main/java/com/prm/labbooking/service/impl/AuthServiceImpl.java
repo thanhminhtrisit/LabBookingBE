@@ -34,7 +34,12 @@ public class AuthServiceImpl implements AuthService {
         User user = User.builder()
             .fullName(request.getFullName()).email(request.getEmail())
             .password(passwordEncoder.encode(request.getPassword()))
-            .phone(request.getPhone()).role(Role.MEMBER)
+            .phone(request.getPhone())
+            .studentCode(request.getStudentCode())   // NEW
+            .staffCode(request.getStaffCode())       // NEW
+            .department(request.getDepartment())     // NEW
+            .faculty(request.getFaculty())           // NEW
+            .role(Role.MEMBER)
             .createdAt(LocalDateTime.now()).build();
         User saved = userRepository.save(user);
         String token = jwtUtils.generateToken(saved.getId(), saved.getEmail(), saved.getRole().name());
@@ -66,6 +71,11 @@ public class AuthServiceImpl implements AuthService {
     private UserResponse toUserResponse(User u) {
         return UserResponse.builder()
             .id(u.getId()).fullName(u.getFullName()).email(u.getEmail())
-            .phone(u.getPhone()).role(u.getRole().name()).createdAt(u.getCreatedAt()).build();
+            .phone(u.getPhone()).role(u.getRole().name())
+            .studentCode(u.getStudentCode())   // NEW
+            .staffCode(u.getStaffCode())       // NEW
+            .department(u.getDepartment())     // NEW
+            .faculty(u.getFaculty())           // NEW
+            .createdAt(u.getCreatedAt()).build();
     }
 }

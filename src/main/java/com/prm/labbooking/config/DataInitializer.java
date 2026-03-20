@@ -43,6 +43,9 @@ public class DataInitializer {
                     .location("Tầng 3, Phòng 301")
                     .description("Lab máy tính với 30 máy, hỗ trợ lập trình và thiết kế")
                     .capacity(30)
+                    .building("Block C")
+                    .faculty("Computer Science & IT")
+                    .equipment("[{\"name\":\"Desktop PC\",\"quantity\":30}]")
                     .status(LabStatus.ACTIVE)
                     .createdAt(LocalDateTime.now())
                     .build();
@@ -53,6 +56,9 @@ public class DataInitializer {
                     .location("Tầng 3, Phòng 302")
                     .description("Lab máy tính với 25 máy, chuyên về mạng và bảo mật")
                     .capacity(25)
+                    .building("Block C")
+                    .faculty("Computer Science & IT")
+                    .equipment("[{\"name\":\"Desktop PC\",\"quantity\":25},{\"name\":\"Router\",\"quantity\":5}]")
                     .status(LabStatus.ACTIVE)
                     .createdAt(LocalDateTime.now())
                     .build();
@@ -63,6 +69,9 @@ public class DataInitializer {
                     .location("Tầng 4, Phòng 401")
                     .description("Lab máy tính với 20 máy, dành cho nghiên cứu AI")
                     .capacity(20)
+                    .building("Block E")
+                    .faculty("Computer Science & IT")
+                    .equipment("[{\"name\":\"GPU Workstation\",\"quantity\":20}]")
                     .status(LabStatus.MAINTENANCE)
                     .createdAt(LocalDateTime.now())
                     .build();
@@ -73,6 +82,9 @@ public class DataInitializer {
                     .location("Tầng 4, Phòng 402")
                     .description("Lab máy tính với 15 máy, phòng thí nghiệm hóa học ảo")
                     .capacity(15)
+                    .building("Block E")
+                    .faculty("Applied Sciences")
+                    .equipment("[{\"name\":\"Desktop PC\",\"quantity\":15},{\"name\":\"VR Headset\",\"quantity\":5}]")
                     .status(LabStatus.CLOSED)
                     .createdAt(LocalDateTime.now())
                     .build();

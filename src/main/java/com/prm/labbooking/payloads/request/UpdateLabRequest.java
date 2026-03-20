@@ -9,4 +9,7 @@ public class UpdateLabRequest {
     private String location;
     private String description;
     private Integer capacity;
+    private String building;
+    private String faculty;
+    private String equipment;
 }

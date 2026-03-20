@@ -11,5 +11,9 @@ public class RegisterRequest {
     @NotBlank(message = "Full name is required") private String fullName;
     @NotBlank @Email private String email;
     @NotBlank @Size(min = 6, message = "Password must be at least 6 characters") private String password;
-    private String phone;
+    @NotBlank private String phone;
+    private String studentCode;
+    private String staffCode;
+    private String department;
+    private String faculty;
 }

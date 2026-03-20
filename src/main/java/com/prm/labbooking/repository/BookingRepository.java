@@ -34,4 +34,12 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
            "AND b.startTime > :now")
     List<Booking> findFutureActiveByLabId(@Param("labId") Long labId,
                                           @Param("now") LocalDateTime now);
+
+    @Query("SELECT COUNT(b) > 0 FROM Booking b " +
+           "WHERE b.lab.id = :labId " +
+           "AND b.status = 'APPROVED' " +
+           "AND b.startTime <= :now " +
+           "AND b.endTime >= :now")
+    boolean isLabOccupiedNow(@Param("labId") Long labId,
+                              @Param("now") LocalDateTime now);
 }

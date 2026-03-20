@@ -62,7 +62,11 @@ public class LabServiceImpl implements LabService {
             return ResponseUtils.error("409", "Mã lab đã tồn tại");
         Lab lab = Lab.builder().name(request.getName()).code(request.getCode())
             .location(request.getLocation()).description(request.getDescription())
-            .capacity(request.getCapacity()).status(LabStatus.ACTIVE).build();
+            .capacity(request.getCapacity())
+            .building(request.getBuilding())       // NEW
+            .faculty(request.getFaculty())         // NEW
+            .equipment(request.getEquipment())     // NEW
+            .status(LabStatus.ACTIVE).build();
         return ResponseUtils.created(toLabResponse(labRepository.save(lab)), "Tạo lab thành công");
     }
 
@@ -74,6 +78,9 @@ public class LabServiceImpl implements LabService {
         if (request.getLocation() != null) lab.setLocation(request.getLocation());
         if (request.getDescription() != null) lab.setDescription(request.getDescription());
         if (request.getCapacity() != null) lab.setCapacity(request.getCapacity());
+        if (request.getBuilding() != null)   lab.setBuilding(request.getBuilding());
+        if (request.getFaculty() != null)    lab.setFaculty(request.getFaculty());
+        if (request.getEquipment() != null)  lab.setEquipment(request.getEquipment());
         return ResponseUtils.success(toLabResponse(labRepository.save(lab)), "Cập nhật thành công");
     }
 
@@ -105,9 +112,21 @@ public class LabServiceImpl implements LabService {
     }
 
     private LabResponse toLabResponse(Lab l) {
-        return LabResponse.builder().id(l.getId()).name(l.getName()).code(l.getCode())
-            .location(l.getLocation()).description(l.getDescription()).capacity(l.getCapacity())
-            .status(l.getStatus().name()).createdAt(l.getCreatedAt()).build();
+        boolean occupied = bookingRepository.isLabOccupiedNow(l.getId(), LocalDateTime.now());
+        return LabResponse.builder()
+            .id(l.getId())
+            .name(l.getName())
+            .code(l.getCode())
+            .location(l.getLocation())
+            .description(l.getDescription())
+            .capacity(l.getCapacity())
+            .building(l.getBuilding())
+            .faculty(l.getFaculty())
+            .equipment(l.getEquipment())
+            .status(l.getStatus().name())
+            .isOccupied(occupied)
+            .createdAt(l.getCreatedAt())
+            .build();
     }
 
     private BookingResponse toBookingResponse(Booking b) {
